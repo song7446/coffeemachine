@@ -85,11 +85,13 @@ public class CoffeeMethod extends RemainCoffee implements CoffeeMethodInterface 
             int money = Integer.parseInt(sc.nextLine());
             if (remain.getRemainMoney() < money) {
                 System.out.println("잔고가 부족합니다");
+                take();
             } else {
                 remain.setRemainMoney(remain.getRemainMoney() - money);
             }
         } catch (NumberFormatException e) {
             System.out.println("숫자를 입력해주세요");
+            take();
         }
     }
 
