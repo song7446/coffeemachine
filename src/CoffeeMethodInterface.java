@@ -4,4 +4,7 @@ public interface CoffeeMethodInterface {
     void take();
     void now();
     void select();
+    void EspressoCheck();
+    void LatteCheck();
+    void CappuccinoCheck();
 }

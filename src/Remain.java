@@ -1,9 +1,9 @@
 public class Remain {
-    int remainWater;
-    int remainMoney;
-    int remainMilk;
-    int remainCoffeeBean;
-    int remainCup;
+    int remainWater = 400;
+    int remainMilk = 540;
+    int remainCoffeeBean = 120;
+    int remainCup = 9;
+    int remainMoney = 50000;
 
     public int getRemainWater() {
         return remainWater;
