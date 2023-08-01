@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class CoffeeMethod extends RemainCoffee implements CoffeeMethodInterface {
+public class CoffeeMethodUsing extends CoffeeUsing implements CoffeeMethodInterface {
     Scanner sc = new Scanner(System.in);
     Remain remain = new Remain();
 
@@ -146,12 +146,15 @@ public class CoffeeMethod extends RemainCoffee implements CoffeeMethodInterface 
 
     @Override
     public void EspressoCheck() {
-        if (remain.getRemainWater() < EspressoWater || remain.getRemainCoffeeBean() < EspressoCoffeeBean) {
+        if (remain.getRemainWater() < EspressoWater || remain.getRemainCoffeeBean() < EspressoCoffeeBean || remain.getRemainCup() < cup) {
             if (remain.getRemainWater() < EspressoWater) {
                 System.out.println("물이 부족합니다");
             }
             if (remain.getRemainCoffeeBean() < EspressoCoffeeBean) {
                 System.out.println("원두가 부족합니다");
+            }
+            if (remain.getRemainCup() < cup) {
+                System.out.println("일회용 컵이 부족합니다");
             }
         } else {
             System.out.println("에스프레소를 구매하셨습니다 맛있게 드세요");
@@ -163,7 +166,7 @@ public class CoffeeMethod extends RemainCoffee implements CoffeeMethodInterface 
     }
 
     public void LatteCheck() {
-        if (remain.getRemainWater() < LatteWater || remain.getRemainMilk() < LatteMilk || remain.getRemainCoffeeBean() < LatteCoffeeBean) {
+        if (remain.getRemainWater() < LatteWater || remain.getRemainMilk() < LatteMilk || remain.getRemainCoffeeBean() < LatteCoffeeBean || remain.getRemainCup() < cup) {
             if (remain.getRemainWater() < LatteWater) {
                 System.out.println("물이 부족합니다");
             }
@@ -172,6 +175,9 @@ public class CoffeeMethod extends RemainCoffee implements CoffeeMethodInterface 
             }
             if (remain.getRemainCoffeeBean() < LatteCoffeeBean) {
                 System.out.println("원두가 부족합니다");
+            }
+            if (remain.getRemainCup() < cup) {
+                System.out.println("일회용 컵이 부족합니다");
             }
         } else {
             System.out.println("라떼를 구매하셨습니다 맛있게 드세요");
@@ -184,7 +190,7 @@ public class CoffeeMethod extends RemainCoffee implements CoffeeMethodInterface 
     }
 
     public void CappuccinoCheck() {
-        if (remain.getRemainWater() < CappuccinoWater || remain.getRemainMilk() < CappuccinoMilk || remain.getRemainCoffeeBean() < CappuccinoCoffeeBean) {
+        if (remain.getRemainWater() < CappuccinoWater || remain.getRemainMilk() < CappuccinoMilk || remain.getRemainCoffeeBean() < CappuccinoCoffeeBean || remain.getRemainCup() < cup) {
             if (remain.getRemainWater() < CappuccinoWater) {
                 System.out.println("물이 부족합니다");
             }
@@ -193,6 +199,9 @@ public class CoffeeMethod extends RemainCoffee implements CoffeeMethodInterface 
             }
             if (remain.getRemainCoffeeBean() < CappuccinoCoffeeBean) {
                 System.out.println("원두가 부족합니다");
+            }
+            if (remain.getRemainCup() < cup) {
+                System.out.println("일회용 컵이 부족합니다");
             }
         } else {
             System.out.println("카푸치노를 구매하셨습니다 맛있게 드세요");

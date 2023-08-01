@@ -1,4 +1,4 @@
-public class RemainCoffee {
+public class CoffeeUsing {
     int EspressoMoney = 4000;
     int EspressoWater = 250;
     int EspressoCoffeeBean = 16;
