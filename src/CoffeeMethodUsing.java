@@ -3,14 +3,15 @@ import java.util.Scanner;
 public class CoffeeMethodUsing extends CoffeeUsing implements CoffeeMethodInterface {
     Scanner sc = new Scanner(System.in);
     Remain remain = new Remain();
-
+    int selectNum;
+    boolean isRun = true;
 
     @Override
     public void buy() {
         try {
             System.out.println("어떤 커피를 구매하시겠습니까?");
             System.out.println("1. 에스프레소 4000원 | 2. 라떼 7000원 | 3. 카푸치노 6000원");
-            int selectNum = Integer.parseInt(sc.nextLine());
+            selectNum = Integer.parseInt(sc.nextLine());
             switch (selectNum) {
                 case 1:
                     EspressoCheck();
@@ -23,6 +24,7 @@ public class CoffeeMethodUsing extends CoffeeUsing implements CoffeeMethodInterf
                     break;
                 default:
                     System.out.println("1에서 3 중 하나를 입력해주세요");
+                    buy();
             }
         } catch (NumberFormatException e) {
             System.out.println("숫자를 입력해주세요");
@@ -109,8 +111,6 @@ public class CoffeeMethodUsing extends CoffeeUsing implements CoffeeMethodInterf
     @Override
     public void select() {
         try {
-            int selectNum;
-            boolean isRun = true;
             while (isRun) {
                 now();
                 System.out.println("옵션을 선택하세요");
@@ -135,6 +135,7 @@ public class CoffeeMethodUsing extends CoffeeUsing implements CoffeeMethodInterf
                         break;
                     default:
                         System.out.println("1에서 4중 하나를 선택해주세요");
+                        select();
                         break;
                 }
             }
