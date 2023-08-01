@@ -1,6 +1,9 @@
 public interface CoffeeMethodInterface {
     void buy();
-    void fill();
+    void fillWater();
+    void fillMilk();
+    void fillCoffeeBean();
+    void fillCup();
     void take();
     void now();
     void select();

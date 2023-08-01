@@ -1,9 +1,10 @@
 import java.util.Scanner;
 
-public class CoffeeMethod implements CoffeeMethodInterface {
+public class CoffeeMethod extends RemainCoffee implements CoffeeMethodInterface {
     Scanner sc = new Scanner(System.in);
     Remain remain = new Remain();
-    RemainCoffee remainCoffee = new RemainCoffee();
+
+
     @Override
     public void buy() {
         try {
@@ -23,37 +24,63 @@ public class CoffeeMethod implements CoffeeMethodInterface {
                 default:
                     System.out.println("1에서 3 중 하나를 입력해주세요");
             }
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("숫자를 입력해주세요");
             buy();
         }
     }
+
     @Override
-    public void fill() {
+    public void fillWater() {
         try {
             System.out.print("추가할 물의 양을 입력하세요 : ");
             int fillWater = Integer.parseInt(sc.nextLine());
             remain.setRemainWater(remain.getRemainWater() + fillWater);
+        } catch (NumberFormatException e) {
+            System.out.println("숫자를 입력해주세요");
+            fillWater();
+        }
+    }
 
+    @Override
+    public void fillMilk() {
+        try {
             System.out.print("추가할 우유의 양을 입력하세요 : ");
             int fillMilk = Integer.parseInt(sc.nextLine());
             remain.setRemainMilk(remain.getRemainMilk() + fillMilk);
+        } catch (NumberFormatException e) {
+            System.out.println("숫자를 입력해주세요");
+            fillMilk();
+        }
+    }
 
+    @Override
+    public void fillCoffeeBean() {
+        try {
             System.out.print("추가할 원두의 양을 입력하세요 : ");
             int fillCoffeeBean = Integer.parseInt(sc.nextLine());
             remain.setRemainCoffeeBean(remain.getRemainCoffeeBean() + fillCoffeeBean);
+        } catch (NumberFormatException e) {
+            System.out.println("숫자를 입력해주세요");
+            fillCoffeeBean();
+        }
+    }
 
+    @Override
+    public void fillCup() {
+        try {
             System.out.print("추가할 일회용 컵의 양을 입력하세요 : ");
             int fillCup = Integer.parseInt(sc.nextLine());
             remain.setRemainCup(remain.getRemainCup() + fillCup);
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("숫자를 입력해주세요");
+            fillCup();
         }
     }
 
     @Override
     public void take() {
-        try{
+        try {
             System.out.print("가져갈 돈을 입력해주세요 : ");
             int money = Integer.parseInt(sc.nextLine());
             if (remain.getRemainMoney() < money) {
@@ -61,20 +88,20 @@ public class CoffeeMethod implements CoffeeMethodInterface {
             } else {
                 remain.setRemainMoney(remain.getRemainMoney() - money);
             }
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("숫자를 입력해주세요");
         }
     }
 
     @Override
-    public void now(){
+    public void now() {
         System.out.println("--------------- 현재 커피머신 상태 ---------------");
         System.out.println("---------------  남은 재료와 돈  ----------------");
-        System.out.println("물 : "+remain.getRemainWater()+"ml");
-        System.out.println("우유 : "+ remain.getRemainMilk() +"ml");
-        System.out.println("원두 : "+ remain.getRemainCoffeeBean() +"g");
-        System.out.println("일회용 컵 : "+ remain.getRemainCup() +"개");
-        System.out.println("돈 : "+remain.getRemainMoney()+"원");
+        System.out.println("물 : " + remain.getRemainWater() + "ml");
+        System.out.println("우유 : " + remain.getRemainMilk() + "ml");
+        System.out.println("원두 : " + remain.getRemainCoffeeBean() + "g");
+        System.out.println("일회용 컵 : " + remain.getRemainCup() + "개");
+        System.out.println("돈 : " + remain.getRemainMoney() + "원");
     }
 
     @Override
@@ -92,7 +119,10 @@ public class CoffeeMethod implements CoffeeMethodInterface {
                         buy();
                         break;
                     case 2:
-                        fill();
+                        fillWater();
+                        fillMilk();
+                        fillCoffeeBean();
+                        fillCup();
                         break;
                     case 3:
                         take();
@@ -106,69 +136,69 @@ public class CoffeeMethod implements CoffeeMethodInterface {
                         break;
                 }
             }
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("숫자를 입력해주세요");
             select();
         }
     }
+
     @Override
-    public void EspressoCheck(){
-        if(remain.getRemainWater() < remainCoffee.EspressoWater || remain.getRemainCoffeeBean() < remainCoffee.EspressoCoffeeBean) {
-            if (remain.getRemainWater() < remainCoffee.EspressoWater) {
+    public void EspressoCheck() {
+        if (remain.getRemainWater() < EspressoWater || remain.getRemainCoffeeBean() < EspressoCoffeeBean) {
+            if (remain.getRemainWater() < EspressoWater) {
                 System.out.println("물이 부족합니다");
             }
-            if (remain.getRemainCoffeeBean() < remainCoffee.EspressoCoffeeBean) {
+            if (remain.getRemainCoffeeBean() < EspressoCoffeeBean) {
                 System.out.println("원두가 부족합니다");
             }
-        }
-        else {
+        } else {
             System.out.println("에스프레소를 구매하셨습니다 맛있게 드세요");
-            remain.setRemainWater(remain.getRemainWater()-remainCoffee.EspressoWater);
-            remain.setRemainCoffeeBean(remain.getRemainCoffeeBean()-remainCoffee.EspressoCoffeeBean);
-            remain.setRemainCup(remain.getRemainCup()-remainCoffee.cup);
-            remain.setRemainMoney(remain.getRemainMoney()+remainCoffee.EspressoMoney);
+            remain.setRemainWater(remain.getRemainWater() - EspressoWater);
+            remain.setRemainCoffeeBean(remain.getRemainCoffeeBean() - EspressoCoffeeBean);
+            remain.setRemainCup(remain.getRemainCup() - cup);
+            remain.setRemainMoney(remain.getRemainMoney() + EspressoMoney);
         }
     }
-    public void LatteCheck(){
-        if(remain.getRemainWater() < remainCoffee.LatteWater || remain.getRemainCoffeeBean() < remainCoffee.LatteMilk || remain.getRemainCoffeeBean() < remainCoffee.LatteCoffeeBean) {
-            if (remain.getRemainWater() < remainCoffee.LatteWater) {
+
+    public void LatteCheck() {
+        if (remain.getRemainWater() < LatteWater || remain.getRemainMilk() < LatteMilk || remain.getRemainCoffeeBean() < LatteCoffeeBean) {
+            if (remain.getRemainWater() < LatteWater) {
                 System.out.println("물이 부족합니다");
             }
-            if (remain.getRemainMilk() < remainCoffee.LatteMilk) {
+            if (remain.getRemainMilk() < LatteMilk) {
                 System.out.println("우유가 부족합니다");
             }
-            if (remain.getRemainCoffeeBean() < remainCoffee.LatteCoffeeBean) {
+            if (remain.getRemainCoffeeBean() < LatteCoffeeBean) {
                 System.out.println("원두가 부족합니다");
             }
-        }
-        else {
+        } else {
             System.out.println("라떼를 구매하셨습니다 맛있게 드세요");
-            remain.setRemainWater(remain.getRemainWater()-remainCoffee.LatteWater);
-            remain.setRemainMilk(remain.getRemainMilk()-remainCoffee.LatteMilk);
-            remain.setRemainCoffeeBean(remain.getRemainCoffeeBean()-remainCoffee.LatteCoffeeBean);
-            remain.setRemainCup(remain.getRemainCup()-remainCoffee.cup);
-            remain.setRemainMoney(remain.getRemainMoney()+remainCoffee.LatteMoney);
+            remain.setRemainWater(remain.getRemainWater() - LatteWater);
+            remain.setRemainMilk(remain.getRemainMilk() - LatteMilk);
+            remain.setRemainCoffeeBean(remain.getRemainCoffeeBean() - LatteCoffeeBean);
+            remain.setRemainCup(remain.getRemainCup() - cup);
+            remain.setRemainMoney(remain.getRemainMoney() + LatteMoney);
         }
     }
-    public void CappuccinoCheck(){
-        if(remain.getRemainWater() < remainCoffee.CappuccinoWater || remain.getRemainCoffeeBean() < remainCoffee.CappuccinoMilk || remain.getRemainCoffeeBean() < remainCoffee.CappuccinoCoffeeBean) {
-            if (remain.getRemainWater() < remainCoffee.CappuccinoWater) {
+
+    public void CappuccinoCheck() {
+        if (remain.getRemainWater() < CappuccinoWater || remain.getRemainMilk() < CappuccinoMilk || remain.getRemainCoffeeBean() < CappuccinoCoffeeBean) {
+            if (remain.getRemainWater() < CappuccinoWater) {
                 System.out.println("물이 부족합니다");
             }
-            if (remain.getRemainMilk() < remainCoffee.CappuccinoMilk) {
+            if (remain.getRemainMilk() < CappuccinoMilk) {
                 System.out.println("우유가 부족합니다");
             }
-            if (remain.getRemainCoffeeBean() < remainCoffee.CappuccinoCoffeeBean) {
+            if (remain.getRemainCoffeeBean() < CappuccinoCoffeeBean) {
                 System.out.println("원두가 부족합니다");
             }
-        }
-        else {
+        } else {
             System.out.println("카푸치노를 구매하셨습니다 맛있게 드세요");
-            remain.setRemainWater(remain.getRemainWater()-remainCoffee.CappuccinoWater);
-            remain.setRemainMilk(remain.getRemainMilk()-remainCoffee.CappuccinoMilk);
-            remain.setRemainCoffeeBean(remain.getRemainCoffeeBean()-remainCoffee.CappuccinoCoffeeBean);
-            remain.setRemainCup(remain.getRemainCup()-remainCoffee.cup);
-            remain.setRemainMoney(remain.getRemainMoney()+remainCoffee.CappuccinoMoney);
+            remain.setRemainWater(remain.getRemainWater() - CappuccinoWater);
+            remain.setRemainMilk(remain.getRemainMilk() - CappuccinoMilk);
+            remain.setRemainCoffeeBean(remain.getRemainCoffeeBean() - CappuccinoCoffeeBean);
+            remain.setRemainCup(remain.getRemainCup() - cup);
+            remain.setRemainMoney(remain.getRemainMoney() + CappuccinoMoney);
         }
     }
 }
